@@ -1,6 +1,6 @@
 # react-circuit-trainer
 
-### A simple circuit trainer for workouts.
+### A simple circuit trainer for workouts: https://circuit-training.app/
 
 Built using React, Redux and Firebase. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

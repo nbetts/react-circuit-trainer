@@ -12,19 +12,17 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="firebase-app">
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/workout/:id" component={WorkoutDetails} />
-            <Route path="/create" component={CreateWorkout} />
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/workout/:id" component={WorkoutDetails} />
+          <Route path="/create" component={CreateWorkout} />
 
-            {/* TODO: remove on website launch */}
-            <Route path="/comingsoon" component={HoldingPage} />
-          </Switch>
-        </div>
+          {/* TODO: remove on website launch */}
+          <Route path="/comingsoon" component={HoldingPage} />
+        </Switch>
       </BrowserRouter>
     );
   }
