@@ -6,12 +6,18 @@ import SignedOutLinks from './SignedOutLinks'
 
 const Navbar = (props) => {
   const { auth, profile } = props;
+
+  // TODO: remove on website launch
+  if (!auth.uid) {
+    return null
+  }
+
   const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
   
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
-        <Link to="/" className="brand-logo">React Circuit Trainer</Link>
+        <Link to="/" className="brand-logo">Circuit Training</Link>
         { links }
       </div>
     </nav>

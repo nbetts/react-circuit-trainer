@@ -25,9 +25,13 @@ class SignUp extends Component {
   render() {
     const { auth, authError } = this.props;
 
-    if (auth.uid) {
-      return <Redirect to={'/'} />
+    // TODO: remove on website launch and uncomment code below
+    if (!auth.uid) {
+      return <Redirect to={'/comingsoon'} />
     }
+    // if (auth.uid) {
+    //   return <Redirect to={'/'} />
+    // }
 
     return (
       <div className="container">

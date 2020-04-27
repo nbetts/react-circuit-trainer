@@ -8,8 +8,9 @@ import moment from 'moment'
 const WorkoutDetails = (props) => {
   const { auth, workout } = props;
 
+  // TODO: change to /signin on website launch
   if (!auth.uid) {
-    return <Redirect to={'/signin'} />
+    return <Redirect to={'/comingsoon'} />
   }
 
   if (workout) {

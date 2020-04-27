@@ -10,8 +10,9 @@ class Dashboard extends Component {
   render() {
     const { auth, workouts, notifications } = this.props;
 
+    // TODO: change to /signin on website launch
     if (!auth.uid) {
-      return <Redirect to={'/signin'} />
+      return <Redirect to={'/comingsoon'} />
     }
 
     return (
