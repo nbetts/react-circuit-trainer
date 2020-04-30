@@ -10,13 +10,16 @@ const HoldingPage = (props) => {
   }
 
   return (
-    <div className="container">
-      <h1 className="center">Circuit Training</h1>
-      <p className="center">A circuit training web app built with React. Coming soon!</p>
+    <div className="container d-flex flex-column justify-content-center centered-container">
+      <div className="row justify-content-center text-center">
+        <div className="col">
+          <h1 className="display-1 mb-4">Circuit Training</h1>
+          <p className="lead">A circuit training web app built with React. Coming soon!</p>
+        </div>
+      </div>
     </div>
   )
 }
-
 
 const mapStateToProps = (state) => {
   return {

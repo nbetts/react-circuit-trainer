@@ -18,26 +18,27 @@ html {
 
 body {
   min-height: 100%;
-  /* margin: 0;
-  padding: 0; */
-  /* background: url('/img/mario-bg.png') no-repeat;
-  background-size: 100%;
-  background-position: bottom;
-  background-color: #95e8f3; */
-  background: rgb(81,255,196);
-background: linear-gradient(128deg, rgba(81,255,196,1) 0%, rgba(29,253,226,1) 50%, rgba(131,226,255,1) 100%);
+  background: linear-gradient(138deg, rgba(81, 255, 196, 1) 0%, rgba(29, 253, 226, 1) 50%, rgba(153, 231, 255, 1) 100%);
 }
 
-form {
-  padding: 20px 30px;
-  margin-top: 60px;
-  border-radius: 10px;
+.page-content {
+  padding: 30px;
 }
 
-form h5 {
-  margin: 20px 0;
+.centered-container {
+  height: 90vh;
 }
 
-form button {
-  margin-top: 20px;
+.navbar-brand {
+  font-size: 20pt;
+}
+
+.timer-value {
+  font-size: 14vw;
+  cursor: pointer;
+}
+
+.profile-link {
+  height: 30pt;
+  width: 30pt;
 }

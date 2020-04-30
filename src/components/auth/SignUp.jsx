@@ -1,74 +1,42 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { signUp } from '../../store/actions/authActions'
+import Form from '../form/Form';
 
-class SignUp extends Component {
-  state = {
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
+const SignUp = (props) => {
+  const { auth, formError, signUp } = props;
+  const fields = [
+    { id: 'emailAddress', label: 'Email address', type: 'email' },
+    { id: 'name', label: 'Name', type: 'text' },
+    { id: 'password', label: 'Password', type: 'password' },
+    { id: 'confirmPassword', label: 'Confirm password', type: 'password' },
+  ]
+
+  // TODO: remove on website launch and uncomment code below
+  if (!auth.uid) {
+    return <Redirect to={'/comingsoon'} />
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.signUp(this.state)
+  if (auth.uid) {
+    return <Redirect to={'/'} />
   }
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
-
-  render() {
-    const { auth, authError } = this.props;
-
-    // TODO: remove on website launch and uncomment code below
-    if (!auth.uid) {
-      return <Redirect to={'/comingsoon'} />
-    }
-    // if (auth.uid) {
-    //   return <Redirect to={'/'} />
-    // }
-
-    return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Sign Up</h5>
-          <div className="input-field">
-            <label htmlFor="">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="">First Name</label>
-            <input type="text" id="firstName" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="">Last Name</label>
-            <input type="text" id="lastName" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Sign Up</button>
-            <div className="red-text center">
-              { authError ? <p>{ authError }</p> : null }
-            </div>
-          </div>
-        </form>
+  return (
+    <div className="container d-flex flex-column justify-content-center centered-container">
+      <div className="row justify-content-center">
+        <div className="col col-sm-10 col-md-8 col-lg-6">
+          <Form title="Sign up" fields={fields} formError={formError} submit={signUp} />
+        </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    authError: state.auth.authError
+    formError: state.auth.authError
   }
 }
 

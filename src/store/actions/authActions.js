@@ -1,14 +1,23 @@
+import { signInSchema, signUpSchema } from '../schemas/auth.schemas'
+
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase }) => {
+    const { error } = signInSchema.validate(credentials);
+
+    if (error) {
+      dispatch({ type: 'SIGN_IN_ERROR', errorMessage: error.message })
+      return;
+    }
+
     const firebase = getFirebase();
 
     firebase.auth().signInWithEmailAndPassword(
-      credentials.email,
+      credentials.emailAddress,
       credentials.password
     ).then(() => {
       dispatch({ type: 'SIGN_IN_SUCCESS' })
     }).catch((error) => {
-      dispatch({ type: 'SIGN_IN_ERROR', error })
+      dispatch({ type: 'SIGN_IN_ERROR', errorMessage: error.message })
     })
   }
 }
@@ -25,17 +34,22 @@ export const signOut = () => {
 
 export const signUp = (newUser) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const { error } = signUpSchema.validate(newUser);
+
+    if (error) {
+      dispatch({ type: 'SIGN_UP_ERROR', errorMessage: error.message })
+      return;
+    }
+    
     const firebase = getFirebase();
     const firestore = getFirestore();
 
     firebase.auth().createUserWithEmailAndPassword(
-      newUser.email,
+      newUser.emailAddress,
       newUser.password
     ).then((response) => {
       return firestore.collection('users').doc(response.user.uid).set({
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        initials: newUser.firstName[0] + newUser.lastName[0]
+        name: newUser.name,
       })
     }).then(() => {
       dispatch({ type: 'SIGN_UP_SUCCESS' })

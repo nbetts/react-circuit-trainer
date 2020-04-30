@@ -15,22 +15,18 @@ const WorkoutDetails = (props) => {
 
   if (workout) {
     return (
-      <div className="container section workout-details">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className="card-title">{ workout.title }</span>
-            <p>{ workout.content }</p>
-          </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>Posted by { workout.authorFirstName } { workout.authorLastName }</div>
-            <div>{moment(workout.createdAt.toDate()).calendar()}</div>
-          </div>
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title">{ workout.title }</h5>
+          <h6 className="card-subtitle mb-2 text-muted">Posted by { workout.authorName }</h6>
+          <p className="card-text">{ workout.description }</p>
+          <small>{moment(workout.createdAt.toDate()).calendar()}</small>
         </div>
       </div>
     )
   } else {
     return (
-      <div className="container center">Loading workout...</div>
+      <div className="container text-center">Loading workout...</div>
     )
   }
 }

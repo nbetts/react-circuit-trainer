@@ -4,12 +4,15 @@ import { connect } from 'react-redux'
 import { signOut } from '../../store/actions/authActions'
 
 const SignedInLinks = (props) => {
+  const { profile } = props;
+  const initial = profile.isEmpty ? 'U' : profile.name[0].toUpperCase();
+  
   return (
-    <ul className="right">
-      <li><NavLink to="/create">Create workout</NavLink></li>
-      <li><NavLink to="/" onClick={props.signOut}>Sign out</NavLink></li>
-      <li><NavLink to="/" className="btn btn-floating pink lighten-1">{ props.profile.initials }</NavLink></li>
-    </ul>
+    <React.Fragment>
+      <li className="nav-item"><NavLink className="active nav-link px-3" to="/create">Create workout</NavLink></li>
+      <li className="nav-item"><NavLink className="active nav-link px-3" to="/" onClick={props.signOut}>Sign out</NavLink></li>
+      <li className="nav-item"><NavLink className="active nav-link mx-2 bg-primary rounded-circle text-center profile-link" to={'/'}>{ initial }</NavLink></li>
+    </React.Fragment>
   )
 }
 

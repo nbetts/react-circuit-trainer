@@ -3,10 +3,15 @@ const initState = {}
 const workoutReducer = (state = initState, action) => {
   switch (action.type) {
     case 'CREATE_WORKOUT':
-      return state;
+      return {
+        ...state,
+        workoutError: null
+      }
     case 'CREATE_WORKOUT_ERROR':
-      console.log('create workout error', action.error);
-      return state;
+      return {
+        ...state,
+        workoutError: action.errorMessage
+      }
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Dashboard from './components/dashboard/Dashboard'
 import HoldingPage from './components/holdingPage/HoldingPage'
@@ -13,16 +13,19 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Navbar />
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/signin" component={SignIn} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/workout/:id" component={WorkoutDetails} />
-          <Route path="/create" component={CreateWorkout} />
+        <div className="page-content">
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/workout/:id" component={WorkoutDetails} />
+            <Route path="/create" component={CreateWorkout} />
 
-          {/* TODO: remove on website launch */}
-          <Route path="/comingsoon" component={HoldingPage} />
-        </Switch>
+            {/* TODO: remove on website launch */}
+            <Route path="/comingsoon" component={HoldingPage} />
+            <Redirect exact to={'/'} />
+          </Switch>
+        </div>
       </BrowserRouter>
     );
   }

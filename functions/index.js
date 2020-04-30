@@ -12,9 +12,11 @@ const createNotification = (notification) => {
 exports.workoutCreated = functions.firestore.document('workouts/{workoutId}').onCreate(document => {
   const workout = document.data();
   const notification = {
-    content: 'Added a new workout',
-    user: workout.authorFirstName + ' ' + workout.authorLastName,
-    time: admin.firestore.FieldValue.serverTimestamp()
+    documentId: document.id,
+    user: workout.authorName,
+    time: admin.firestore.FieldValue.serverTimestamp(),
+    category: 'workout',
+    content: 'added a new workout',
   }
 
   return createNotification(notification);
@@ -24,9 +26,11 @@ exports.userCreated = functions.auth.user().onCreate(user => {
   return admin.firestore().collection('users').doc(user.uid).get().then((document) => {
     const user = document.data();
     const notification = {
-      content: 'Added a new user',
-      user: user.firstName + ' ' + user.lastName,
-      time: admin.firestore.FieldValue.serverTimestamp()
+      documentId: document.id,
+      user: user.name,
+      time: admin.firestore.FieldValue.serverTimestamp(),
+      category: 'user',
+      content: 'signed up',
     }
 
     return createNotification(notification);

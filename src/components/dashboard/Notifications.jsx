@@ -1,29 +1,24 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 const Notifications = (props) => {
   const { notifications } = props;
 
   return (
-    <div className="section">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className="card-title">Notifications</span>
-            <ul className="notifications">
-              {
-                notifications && notifications.map(notification => {
-                  return (
-                    <li key={notification.id}>
-                      <span className="pink-text">{notification.user} </span>
-                      <span>{notification.content}</span>
-                      <div className="grey-text notification-date">
-                        {moment(notification.time.toDate()).fromNow()}
-                      </div>
-                    </li>
-                  )
-                })
-              }
-            </ul>
+    <div className="card">
+      <div className="card-body p-0">
+        <h2 className="card-title m-4">Latest Updates</h2>
+        <div className="list-group list-group-flush">
+          { notifications && notifications.map(notification => {
+            return (
+              <Link key={notification.id} to={`/${notification.category}/${notification.documentId}`}
+                className="list-group-item list-group-item-action flex-column align-items-start px-4">
+                <p className="mb-1">{notification.user} {notification.content}</p>
+                <small>{moment(notification.time.toDate()).fromNow()}</small>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </div>

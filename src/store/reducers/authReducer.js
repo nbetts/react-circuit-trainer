@@ -10,10 +10,9 @@ const authReducer = (state = initState, action) => {
         authError: null
       }
     case 'SIGN_IN_ERROR':
-      console.log('sign in error');
       return {
         ...state,
-        authError: action.error.message
+        authError: action.errorMessage
       }
     case 'SIGN_OUT_SUCCESS':
       return state;
@@ -23,10 +22,9 @@ const authReducer = (state = initState, action) => {
         authError: null
       }
     case 'SIGN_UP_ERROR':
-      console.log('sign up error');
       return {
         ...state,
-        authError: action.error.message
+        authError: action.errorMessage
       }
     default:
       return state;

@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { Redirect } from 'react-router-dom'
 import WorkoutList from '../workout/WorkoutList'
 import Notifications from './Notifications'
+import Timer from '../timer/Timer'
 
 class Dashboard extends Component {
   render() {
@@ -16,12 +17,16 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="dashboard container">
+      <div className="container">
         <div className="row">
-          <div className="col s12 m6">
+          <div className="col">
+            <Timer />
+          </div>
+          <div className="w-100"></div>
+          <div className="col">
             <WorkoutList workouts={workouts} />
           </div>
-          <div className="col s12 m5 offset-m1">
+          <div className="col">
             <Notifications notifications={notifications} />
           </div>
         </div>
@@ -41,7 +46,7 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'workouts', orderBy: ['createdAt', 'desc'] },
-    { collection: 'notifications', limit: 3, orderBy: ['time', 'desc'] },
+    { collection: 'workouts', limit: 10, orderBy: ['createdAt', 'desc'] },
+    { collection: 'notifications', limit: 5, orderBy: ['time', 'desc'] },
   ])
 )(Dashboard)
