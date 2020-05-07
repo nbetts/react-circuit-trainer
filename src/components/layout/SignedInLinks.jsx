@@ -9,8 +9,8 @@ const SignedInLinks = (props) => {
   
   return (
     <React.Fragment>
-      <li className="nav-item"><NavLink className="active nav-link px-3" to="/create">Create workout</NavLink></li>
-      <li className="nav-item"><NavLink className="active nav-link px-3" to="/" onClick={props.signOut}>Sign out</NavLink></li>
+      <li className="nav-item"><NavLink className="active nav-link px-4" to="/create">Create workout</NavLink></li>
+      <li className="nav-item"><NavLink className="active nav-link px-4" to="/" onClick={props.signOut}>Sign out</NavLink></li>
       <li className="nav-item"><NavLink className="active nav-link mx-2 bg-primary rounded-circle text-center profile-link" to={'/'}>{ initial }</NavLink></li>
     </React.Fragment>
   )

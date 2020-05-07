@@ -1,34 +1,32 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
 import Dashboard from './components/dashboard/Dashboard'
-import HoldingPage from './components/holdingPage/HoldingPage'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
-import WorkoutDetails from './components/workout/WorkoutDetails'
+import WorkoutTimer from './components/workout/WorkoutTimer'
 import CreateWorkout from './components/workout/CreateWorkout'
+import WorkoutDetails from './components/workout/WorkoutDetails'
 
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <Navbar />
-        <div className="page-content">
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/workout/:id" component={WorkoutDetails} />
-            <Route path="/create" component={CreateWorkout} />
-
-            {/* TODO: remove on website launch */}
-            <Route path="/comingsoon" component={HoldingPage} />
-            <Redirect exact to={'/'} />
-          </Switch>
-        </div>
-      </BrowserRouter>
-    );
-  }
+const App = (props) => {
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <div className="page-content">
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/timer" component={WorkoutTimer} />
+          <Route path="/create" component={CreateWorkout} />
+          <Route path="/workout/:id" component={WorkoutDetails} />
+          <Redirect exact to={'/'} />
+        </Switch>
+      </div>
+      <Footer />
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

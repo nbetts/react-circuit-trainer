@@ -5,16 +5,11 @@ import { Redirect } from 'react-router-dom'
 import Form from '../form/Form'
 
 const CreateWorkout = (props) => {
-  const { auth, formError, createWorkout } = props;
+  const { formError, createWorkout } = props;
   const fields = [
     { id: 'title', label: 'Title', type: 'text' },
     { id: 'description', label: 'Description', type: 'text' },
   ]
-
-  // TODO: change to /signin on website launch
-  if (!auth.uid) {
-    return <Redirect to={'/comingsoon'} />
-  }
 
   // Redirect if a workout was successfully created.
   if (formError === null) {
@@ -34,7 +29,6 @@ const CreateWorkout = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.firebase.auth,
     formError: state.workout.workoutError,
   }
 }

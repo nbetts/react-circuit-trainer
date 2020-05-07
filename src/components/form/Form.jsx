@@ -35,7 +35,7 @@ class Form extends Component {
           <div className="text-danger">
               { formError ? <p className="mt-4 mb-1">{ formError }</p> : null }
             </div>
-          <button type="submit" className="btn btn-primary">{ title }</button>
+          <button type="submit" className="btn btn-primary mt-3">{ title }</button>
         </div>
       </form>
     )

@@ -13,11 +13,6 @@ const SignUp = (props) => {
     { id: 'confirmPassword', label: 'Confirm password', type: 'password' },
   ]
 
-  // TODO: remove on website launch and uncomment code below
-  if (!auth.uid) {
-    return <Redirect to={'/comingsoon'} />
-  }
-
   if (auth.uid) {
     return <Redirect to={'/'} />
   }

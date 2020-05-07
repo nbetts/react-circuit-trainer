@@ -2,16 +2,10 @@ import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 
 const WorkoutDetails = (props) => {
-  const { auth, workout } = props;
-
-  // TODO: change to /signin on website launch
-  if (!auth.uid) {
-    return <Redirect to={'/comingsoon'} />
-  }
+  const { workout } = props;
 
   if (workout) {
     return (
@@ -37,7 +31,6 @@ const mapStateToProps = (state, props) => {
   const workout = workouts ? workouts[id] : null;
 
   return {
-    auth: state.firebase.auth,
     workout: workout
   }
 }
